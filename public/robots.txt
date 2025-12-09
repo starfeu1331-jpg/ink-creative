@@ -1,0 +1,15 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Pages spécifiques
+Allow: /apropos
+Allow: /mentions-legales
+Allow: /confidentialite
+
+# API et admin
+Disallow: /api/
+Disallow: /admin
+
+# Sitemap
+Sitemap: https://ink-creative.fr/sitemap.xml

@@ -2,9 +2,12 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import SectionReveal from "@/components/SectionReveal";
 import { InkLiquidFill } from "@/components/animations";
-import { Palette, Video, Handshake, ArrowRight, MapPin, Award } from "lucide-react";
+import { ArrowRight, MapPin, TrendingUp, Users, Target, Phone } from "lucide-react";
+import ContactForm from "@/components/ContactForm";
+import TrustSection from "@/components/TrustSection";
+import ProcessSection from "@/components/ProcessSection";
+import FAQSection from "@/components/FAQSection";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -26,9 +29,20 @@ const itemVariants = {
 };
 
 export default function Home() {
+  // Tracking pour clic téléphone mobile
+  const handlePhoneClick = () => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'conversion', {
+        'send_to': `${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}/${process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL}_call`,
+        'event_category': 'contact',
+        'event_label': 'phone_click_mobile'
+      });
+    }
+  };
+
   return (
     <main className="min-h-screen">
-      {/* Hero Section - Plus compact et professionnel */}
+      {/* Hero Section - Focus Influence Marketing B2B */}
       <header className="min-h-screen flex items-center justify-center px-6 md:px-12 pt-20" role="banner">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -43,53 +57,55 @@ export default function Home() {
               >
                 <div className="flex items-center gap-3 mb-6">
                   <MapPin className="w-5 h-5 text-green-400" />
-                  <span className="text-white/70 font-light">Valence (26) - Drôme</span>
+                  <span className="text-white/70 font-light">Valence (26) - Intervention nationale</span>
                 </div>
                 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 leading-tight">
-                  Ink Creative
-                  <br />
                   <span className="font-medium bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                    Professionnel
+                    Stratégie d&apos;influence
                   </span>
+                  <br />
+                  pour PME
                 </h1>
                 
-                <p className="text-xl md:text-2xl text-white/80 mb-8 leading-relaxed font-light">
-                  Montage vidéo, identité visuelle et communication d&apos;influence.
-                  <br />
-                  <span className="text-white/60">
-                    Des créations qui marquent, des stratégies qui convertissent.
-                  </span>
+                <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed font-medium">
+                  Je sélectionne, négocie et pilote vos campagnes d&apos;influence pour augmenter votre visibilité et vos ventes
+                </p>
+
+                <p className="text-lg text-white/70 mb-8 leading-relaxed font-light">
+                  Vous êtes une PME et vous souhaitez exploiter le potentiel de l&apos;influence marketing ? 
+                  Je vous accompagne de A à Z : du choix des créateurs jusqu&apos;au reporting ROI.
                 </p>
               </motion.div>
               
               <motion.div 
-                className="flex flex-col sm:flex-row gap-4"
+                className="flex flex-col gap-4"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                <Link 
-                  href="/services"
-                  className="group px-8 py-4 bg-white/95 text-gray-900 rounded-2xl font-medium 
-                             hover:bg-white transition-all duration-300 hover:scale-105
-                             backdrop-blur-xl border border-white/20 shadow-xl
+                <a 
+                  href="#contact"
+                  className="group px-8 py-5 bg-gradient-to-r from-green-400 to-green-500 text-gray-900 rounded-2xl font-semibold 
+                             hover:from-green-500 hover:to-green-600 transition-all duration-300 hover:scale-105
+                             shadow-xl shadow-green-500/20
                              flex items-center justify-center gap-2"
                 >
-                  Découvrir nos services
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link 
-                  href="/projets"
+                  Je suis intéressé
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+
+                <a 
+                  href="#methode"
                   className="px-8 py-4 bg-white/10 text-white rounded-2xl font-medium 
                              hover:bg-white/20 transition-all duration-300 hover:scale-105
                              backdrop-blur-xl border border-white/30 text-center"
                 >
-                  Portfolio
-                </Link>
+                  Comment ça marche ?
+                </a>
               </motion.div>
 
-              {/* Statistiques/badges */}
+              {/* Statistiques/preuves sociales */}
               <motion.div 
                 className="flex flex-wrap gap-6 mt-12"
                 initial={{ opacity: 0, y: 20 }}
@@ -97,21 +113,21 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.8 }}
               >
                 <div className="flex items-center gap-2 text-white/60">
-                  <Award className="w-4 h-4 text-green-400" />
-                  <span className="text-sm font-light">+50 projets réalisés</span>
+                  <TrendingUp className="w-4 h-4 text-green-400" />
+                  <span className="text-sm font-light">+150% de visibilité moyenne</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/60">
-                  <Award className="w-4 h-4 text-blue-400" />
-                  <span className="text-sm font-light">Expert certifié</span>
+                  <Users className="w-4 h-4 text-blue-400" />
+                  <span className="text-sm font-light">Réseau 500+ influenceurs</span>
                 </div>
                 <div className="flex items-center gap-2 text-white/60">
-                  <Award className="w-4 h-4 text-purple-400" />
-                  <span className="text-sm font-light">Disponible immédiatement</span>
+                  <Target className="w-4 h-4 text-purple-400" />
+                  <span className="text-sm font-light">ROI moyen 3 à 7,5x</span>
                 </div>
               </motion.div>
             </div>
 
-            {/* Logo animé - Plus subtil */}
+            {/* Logo animé */}
             <motion.div
               className="flex justify-center lg:justify-end"
               initial={{ opacity: 0, scale: 0.9 }}
@@ -126,8 +142,6 @@ export default function Home() {
                   delay={1}
                   className="text-white/90 drop-shadow-2xl"
                 />
-                
-                {/* Effet de brillance subtil */}
                 <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/5 to-transparent rounded-full blur-3xl"></div>
               </div>
             </motion.div>
@@ -135,178 +149,135 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Services Highlight */}
-      <section className="max-w-6xl mx-auto px-6 md:px-12 py-32" role="main">
+      {/* Pourquoi l'influence marketing */}
+      <section className="max-w-6xl mx-auto px-6 md:px-12 py-20">
         <motion.div 
-          className="text-center mb-20"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <motion.h2 
-            className="text-3xl md:text-4xl font-light text-white mb-6"
-            variants={itemVariants}
-          >
-            Trois expertises au service de votre succès
-          </motion.h2>
-          <motion.p 
-            className="text-xl text-white/70 max-w-3xl mx-auto font-light leading-relaxed"
-            variants={itemVariants}
-          >
-            Allier créativité, stratégie et technique pour donner vie à vos projets 
-            et construire une communication qui vous ressemble.
-          </motion.p>
-        </motion.div>
-
-        <motion.div 
-          className="grid md:grid-cols-3 gap-8 mb-20"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {/* Montage Vidéo */}
-          <motion.article 
-            className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/8 transition-all duration-500"
-            variants={itemVariants}
-          >
-            <div className="flex items-center mb-6">
-              <div className="p-3 bg-gradient-to-br from-green-400/20 to-emerald-400/20 rounded-xl mr-4">
-                <Video className="w-8 h-8 text-green-400" />
-              </div>
-              <h3 className="text-xl font-light text-white">Montage Vidéo</h3>
-            </div>
-            
-            <p className="text-white/70 font-light leading-relaxed mb-6">
-              Reels, YouTube Shorts, contenu social : donnez de l&apos;impact à vos messages 
-              avec des montages percutants adaptés à chaque plateforme.
-            </p>
-            
-            <ul className="space-y-2 text-sm text-white/60 font-light mb-6">
-              <li>• Courts formats pour réseaux sociaux</li>
-              <li>• Étalonnage et post-production</li>
-              <li>• Adaptation multi-plateformes</li>
-            </ul>
-            
-            <Link 
-              href="/montage-video"
-              className="inline-flex items-center text-green-400 font-medium hover:text-green-300 transition-colors group-hover:translate-x-1"
-            >
-              En savoir plus
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </motion.article>
-
-          {/* Identité Visuelle */}
-          <motion.article 
-            className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/8 transition-all duration-500"
-            variants={itemVariants}
-          >
-            <div className="flex items-center mb-6">
-              <div className="p-3 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-xl mr-4">
-                <Palette className="w-8 h-8 text-blue-400" />
-              </div>
-              <h3 className="text-xl font-light text-white">Identité Visuelle</h3>
-            </div>
-            
-            <p className="text-white/70 font-light leading-relaxed mb-6">
-              Logo, charte graphique, supports de communication : créons ensemble 
-              une identité forte qui vous distingue et marque les esprits.
-            </p>
-            
-            <ul className="space-y-2 text-sm text-white/60 font-light mb-6">
-              <li>• Création de logo et branding</li>
-              <li>• Supports print et digital</li>
-              <li>• Charte graphique complète</li>
-            </ul>
-            
-            <Link 
-              href="/identite-visuelle"
-              className="inline-flex items-center text-blue-400 font-medium hover:text-blue-300 transition-colors"
-            >
-              En savoir plus
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </motion.article>
-
-          {/* Communication & Stratégie */}
-          <motion.article 
-            className="group bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:bg-white/8 transition-all duration-500"
-            variants={itemVariants}
-          >
-            <div className="flex items-center mb-6">
-              <div className="p-3 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-xl mr-4">
-                <Handshake className="w-8 h-8 text-purple-400" />
-              </div>
-              <h3 className="text-xl font-light text-white">Communication</h3>
-            </div>
-            
-            <p className="text-white/70 font-light leading-relaxed mb-6">
-              Stratégie d&apos;influence, gestion de campagnes, positionnement de marque : 
-              transformons votre vision en communication performante.
-            </p>
-            
-            <ul className="space-y-2 text-sm text-white/60 font-light mb-6">
-              <li>• Stratégie d&apos;influence</li>
-              <li>• Gestion de campagnes</li>
-              <li>• Accompagnement personnalisé</li>
-            </ul>
-            
-            <Link 
-              href="/communication-influence"
-              className="inline-flex items-center text-purple-400 font-medium hover:text-purple-300 transition-colors"
-            >
-              En savoir plus
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </motion.article>
-        </motion.div>
-
-        {/* Call to Action */}
-        <motion.div 
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-12">
-            <h3 className="text-2xl md:text-3xl font-light text-white mb-4">
-              Prêt à donner vie à votre projet ?
-            </h3>
-            <p className="text-lg text-white/70 mb-8 font-light max-w-2xl mx-auto">
-              Discutons de vos besoins et construisons ensemble une stratégie sur mesure. 
-              Devis gratuit et sans engagement.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link 
-                href="/contact"
-                className="px-8 py-4 bg-white/95 text-gray-900 rounded-2xl font-medium 
-                           hover:bg-white transition-all duration-300 hover:scale-105
-                           backdrop-blur-xl border border-white/20 shadow-xl"
-              >
-                Demander un devis gratuit
-              </Link>
-              <Link 
-                href="/projets"
-                className="px-8 py-4 bg-white/10 text-white rounded-2xl font-medium 
-                           hover:bg-white/20 transition-all duration-300 hover:scale-105
-                           backdrop-blur-xl border border-white/30"
-              >
-                Voir nos réalisations
-              </Link>
-            </div>
-          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-6">
+            Pourquoi l&apos;influence marketing pour votre PME ?
+          </h2>
+          <p className="text-xl text-white/70 max-w-3xl mx-auto font-light leading-relaxed">
+            Supprimer les freins des consommateurs n&apos;a jamais été aussi facile. 
+            L&apos;influence marketing génère de l&apos;authenticité, de l&apos;engagement et des ventes.
+          </p>
         </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          <motion.div 
+            className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="text-4xl mb-4">🎯</div>
+            <h3 className="text-xl font-semibold text-white mb-3">Visibilité ultra ciblée</h3>
+            <p className="text-white/70 font-light leading-relaxed">
+              Touchez précisément votre audience grâce à des créateurs qui partagent vos valeurs et s&apos;adressent à vos clients idéaux.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <div className="text-4xl mb-4">💰</div>
+            <h3 className="text-xl font-semibold text-white mb-3">ROI mesurable</h3>
+            <p className="text-white/70 font-light leading-relaxed">
+              Chaque euro investi est tracké : impressions, clics, conversions. Vous savez exactement ce qui fonctionne.
+            </p>
+          </motion.div>
+
+          <motion.div 
+            className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="text-4xl mb-4">⚡</div>
+            <h3 className="text-xl font-semibold text-white mb-3">Gain de temps</h3>
+            <p className="text-white/70 font-light leading-relaxed">
+              Pas besoin de prospecter, négocier et gérer les influenceurs vous-même. Je m&apos;occupe de tout.
+            </p>
+          </motion.div>
+        </div>
       </section>
 
-      {/* Footer professionnel */}
+      {/* Section Clients */}
+      <TrustSection />
+
+      {/* Comment je travaille */}
+      <div id="methode">
+        <ProcessSection />
+      </div>
+
+      {/* FAQ */}
+      <FAQSection />
+
+      {/* Formulaire de contact */}
+      <section id="contact" className="py-20 px-6 md:px-12 bg-white/5">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4">
+              Prêt à booster votre visibilité ?
+            </h2>
+            <p className="text-xl text-white/70">
+              Remplissez ce formulaire et je vous recontacte dans les 24h pour discuter de votre projet.
+            </p>
+          </motion.div>
+
+          <ContactForm />
+        </div>
+      </section>
+
+      {/* CTA Final */}
+      <section className="py-20 px-6 md:px-12">
+        <div className="max-w-4xl mx-auto">
+          <motion.div 
+            className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-12 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="text-2xl md:text-3xl font-light text-white mb-4">
+              Vous hésitez encore ?
+            </h3>
+            <p className="text-lg text-white/70 mb-8 font-light max-w-2xl mx-auto">
+              Échangeons 15 minutes au téléphone pour voir si l&apos;influence marketing est adapté à votre entreprise. 
+              Aucun engagement, juste des conseils.
+            </p>
+            
+            <a 
+              href="#contact"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-green-400 to-green-500 text-gray-900 rounded-xl font-semibold hover:from-green-500 hover:to-green-600 transition-all duration-300 hover:scale-105 shadow-lg shadow-green-500/20"
+            >
+              <Phone className="w-5 h-5" />
+              Demander un rappel gratuit
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer - Nos autres services en bas */}
       <footer className="py-20 px-6 md:px-12 border-t border-white/10">
         <div className="max-w-6xl mx-auto">
           
-          {/* Section principale */}
           <div className="grid md:grid-cols-3 gap-12 mb-16">
             
             {/* Informations studio */}
@@ -336,22 +307,22 @@ export default function Home() {
                 </svg>
                 <div>
                   <div className="text-white font-medium text-lg">Ink Creative</div>
-                  <div className="text-white/60 text-sm">Creative & Strategic</div>
+                  <div className="text-white/60 text-sm">Influence Marketing</div>
                 </div>
               </div>
               
               <p className="text-white/70 font-light leading-relaxed">
-                Agence créative spécialisée en montage vidéo, identité visuelle et communication d&apos;influence. 
-                Basée à Valence, nous accompagnons les marques vers le succès.
+                Agence spécialisée en stratégie d&apos;influence marketing pour PME. 
+                Sélection, négociation et pilotage de campagnes avec reporting ROI complet.
               </p>
               
               <div className="flex items-center gap-2 text-white/60">
                 <MapPin className="w-4 h-4 text-green-400" />
-                <span className="text-sm">Valence (26) - Drôme, France</span>
+                <span className="text-sm">Valence (26) - Intervention France entière</span>
               </div>
             </motion.div>
 
-            {/* Navigation rapide */}
+            {/* Navigation */}
             <motion.div 
               className="space-y-6"
               initial={{ opacity: 0, y: 20 }}
@@ -361,22 +332,22 @@ export default function Home() {
             >
               <h4 className="text-white font-medium text-lg">Navigation</h4>
               <nav className="space-y-3">
-                <Link href="/services" className="block text-white/70 hover:text-white transition-colors font-light">
-                  Nos Services
-                </Link>
+                <a href="#methode" className="block text-white/70 hover:text-white transition-colors font-light">
+                  Comment ça marche
+                </a>
                 <Link href="/projets" className="block text-white/70 hover:text-white transition-colors font-light">
-                  Portfolio
+                  Nos campagnes
                 </Link>
                 <Link href="/apropos" className="block text-white/70 hover:text-white transition-colors font-light">
                   À propos
                 </Link>
-                <Link href="/contact" className="block text-white/70 hover:text-white transition-colors font-light">
+                <a href="#contact" className="block text-white/70 hover:text-white transition-colors font-light">
                   Contact
-                </Link>
+                </a>
               </nav>
             </motion.div>
 
-            {/* Expertise */}
+            {/* Nos autres compétences */}
             <motion.div 
               className="space-y-6"
               initial={{ opacity: 0, y: 20 }}
@@ -384,27 +355,14 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-white font-medium text-lg">Expertises</h4>
-              <ul className="space-y-3 text-white/70 font-light">
-                <li>Montage Vidéo Social Media</li>
-                <li>Identité Visuelle & Branding</li>
-                <li>Communication d&apos;Influence</li>
-                <li>Stratégie Créative</li>
-              </ul>
-              
-              <div className="pt-4">
-                <Link 
-                  href="/contact"
-                  className="inline-flex items-center gap-2 text-green-400 font-medium hover:text-green-300 transition-colors"
-                >
-                  Démarrer un projet
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+              <h4 className="text-white font-medium text-lg">Nos autres compétences</h4>
+              <p className="text-white/60 text-sm font-light">
+                Bientôt disponibles
+              </p>
             </motion.div>
           </div>
 
-          {/* Copyright et mentions */}
+          {/* Copyright */}
           <motion.div 
             className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4"
             initial={{ opacity: 0 }}
@@ -417,12 +375,12 @@ export default function Home() {
             </div>
             
             <div className="flex gap-6 text-sm text-white/40 font-light">
-              <a href="#" className="hover:text-white/60 transition-colors">
+              <Link href="/mentions-legales" className="hover:text-white/60 transition-colors">
                 Mentions légales
-              </a>
-              <a href="#" className="hover:text-white/60 transition-colors">
+              </Link>
+              <Link href="/confidentialite" className="hover:text-white/60 transition-colors">
                 Confidentialité
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>

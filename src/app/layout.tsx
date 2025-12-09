@@ -9,16 +9,16 @@ import Analytics from "@/components/Analytics";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Ink Creative - Expert Montage Vidéo & Identité Visuelle | Créatif Digital",
-  description: "Agence créative spécialisée en montage vidéo, infographie et identité visuelle. Créateur de contenus visuels impactants pour marques et entreprises. Devis gratuit.",
-  keywords: "montage vidéo, infographie, identité visuelle, logo, graphisme, agence créative, design graphique, communication visuelle, édition vidéo",
+  title: "Ink Creative - Stratégie d'Influence Marketing pour PME | Agence Spécialisée",
+  description: "Agence d'influence marketing B2B pour PME. Je sélectionne, négocie et pilote vos campagnes d'influence pour augmenter votre visibilité et vos ventes. ROI mesurable.",
+  keywords: "influence marketing, stratégie influence PME, campagne influence, influenceurs B2B, marketing influence entreprise, ROI influence, agence influence, sélection influenceurs, gestion campagne influence",
   authors: [{ name: "Ink Creative" }],
   creator: "Ink Creative",
   publisher: "Ink Creative",
   robots: "index, follow",
   openGraph: {
-    title: "Ink Creative - Expert Montage Vidéo & Identité Visuelle",
-    description: "Agence créative spécialisée en montage vidéo, infographie et identité visuelle. Encrez vos projets avec des créations uniques.",
+    title: "Ink Creative - Stratégie d'Influence Marketing pour PME",
+    description: "Je sélectionne, négocie et pilote vos campagnes d'influence pour augmenter votre visibilité et vos ventes. Accompagnement complet de A à Z.",
     url: "https://ink-creative.fr",
     siteName: "Ink Creative",
     type: "website",
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ink Creative - Expert Montage Vidéo & Identité Visuelle",
-    description: "Agence créative spécialisée en montage vidéo, infographie et identité visuelle.",
+    title: "Ink Creative - Stratégie d'Influence Marketing pour PME",
+    description: "Accompagnement en influence marketing pour PME : sélection, négociation et pilotage de campagnes avec ROI mesurable.",
   },
 };
 
@@ -67,27 +67,31 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "CreativeWork",
+              "@type": "ProfessionalService",
               "name": "Ink Creative",
-              "description": "Agence créative spécialisée en montage vidéo, infographie et identité visuelle",
+              "description": "Agence spécialisée en stratégie d'influence marketing pour PME",
               "url": "https://ink-creative.fr",
-              "creator": {
-                "@type": "Organization",
-                "name": "Ink Creative",
-                "description": "Agence de création visuelle et digitale",
-                "sameAs": [
-                  "https://instagram.com/ink_creative",
-                  "https://behance.net/ink-creative"
-                ]
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Valence",
+                "postalCode": "26000",
+                "addressCountry": "FR"
               },
-              "mainEntity": {
-                "@type": "Service",
-                "serviceType": ["Montage Vidéo", "Infographie", "Identité Visuelle", "Design Graphique"],
-                "provider": {
-                  "@type": "Organization", 
-                  "name": "Ink Creative"
-                }
-              }
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "44.9334",
+                "longitude": "4.8924"
+              },
+              "priceRange": "€€",
+              "serviceType": ["Influence Marketing", "Stratégie d'Influence", "Gestion de Campagne d'Influence"],
+              "areaServed": {
+                "@type": "Country",
+                "name": "France"
+              },
+              "sameAs": [
+                "https://instagram.com/ink_creative",
+                "https://linkedin.com/company/ink-creative"
+              ]
             })
           }}
         />
