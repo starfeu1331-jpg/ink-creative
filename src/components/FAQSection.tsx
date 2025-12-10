@@ -12,7 +12,7 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     question: "Quel budget prévoir pour une campagne d'influence marketing ?",
-    answer: "Entre 500€ et 1500€. Autant vous dire que c'est vague car chaque projet est différent, chaque besoin est unique. Nous adaptons la stratégie à votre budget pour maximiser le ROI."
+    answer: "Entre 500€ et 15.000€. Autant vous dire que c'est vague car chaque projet est différent, chaque besoin est unique. Nous adaptons la stratégie à votre budget pour maximiser le ROI."
   },
   {
     question: "Combien de temps dure une campagne typique ?",
