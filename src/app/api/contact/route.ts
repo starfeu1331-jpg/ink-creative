@@ -65,12 +65,15 @@ export async function POST(request: NextRequest) {
           { pretty: true }
         );
 
-        await resend.emails.send({
+        const emailResult = await resend.emails.send({
           from: 'Ink Creative <onboarding@resend.dev>',
           to: process.env.NOTIFICATION_EMAIL || 'starfeu1331@gmail.com',
           subject: '🎯 Nouvelle demande de contact - Ink Creative',
           html: emailHtml,
+          reply_to: validatedData.email, // Permet de répondre directement au prospect
         });
+        
+        console.log('✅ Email envoyé avec succès:', emailResult);
       } catch (emailError) {
         // Ne pas bloquer la réponse si l'email échoue
         console.error('Erreur envoi email:', emailError);
