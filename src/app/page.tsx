@@ -234,10 +234,10 @@ export default function Home() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4">
-              Prêt à booster votre visibilité ?
+              Parlons de votre projet
             </h2>
             <p className="text-xl text-white/70">
-              Remplissez ce formulaire et je vous recontacte dans les 24h pour discuter de votre projet.
+              Remplissez ce formulaire et je vous recontacte dans les 24h pour discuter de votre stratégie d'influence.
             </p>
           </motion.div>
 
