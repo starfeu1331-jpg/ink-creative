@@ -45,17 +45,17 @@ export default function ContactForm({ variant = 'default' }: ContactFormProps) {
       if (data.success) {
         setStatus('success');
         
-        // Google Ads Conversion Tracking (à activer quand campagne lancée)
-        // if (typeof window !== 'undefined' && window.gtag && process.env.NEXT_PUBLIC_GOOGLE_ADS_ID) {
-        //   window.gtag('event', 'conversion', {
-        //     'send_to': `${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}/${process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL}`,
-        //     'value': 1.0,
-        //     'currency': 'EUR',
-        //     'event_callback': () => {
-        //       console.log('Conversion trackée');
-        //     }
-        //   });
-        // }
+        // Google Ads Conversion Tracking
+        if (typeof window !== 'undefined' && window.gtag && process.env.NEXT_PUBLIC_GOOGLE_ADS_ID) {
+          window.gtag('event', 'conversion', {
+            'send_to': `${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}/${process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL}`,
+            'value': 1.0,
+            'currency': 'EUR',
+            'event_callback': () => {
+              console.log('Conversion Google Ads trackée');
+            }
+          });
+        }
         
         // Event Analytics - Tracking formulaire de contact
         if (typeof window !== 'undefined' && window.gtag) {
