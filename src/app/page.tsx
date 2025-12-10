@@ -226,21 +226,6 @@ export default function Home() {
       {/* Formulaire de contact */}
       <section id="contact" className="py-20 px-6 md:px-12 bg-white/5">
         <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4">
-              Parlons de votre projet
-            </h2>
-            <p className="text-xl text-white/70">
-              Remplissez ce formulaire et je vous recontacte dans les 24h pour discuter de votre stratégie d'influence.
-            </p>
-          </motion.div>
-
           <ContactForm />
         </div>
       </section>
