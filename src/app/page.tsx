@@ -347,7 +347,7 @@ export default function Home() {
               </nav>
             </motion.div>
 
-            {/* Nos autres compétences */}
+            {/* Contact */}
             <motion.div 
               className="space-y-6"
               initial={{ opacity: 0, y: 20 }}
@@ -355,10 +355,13 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-white font-medium text-lg">Nos autres compétences</h4>
-              <p className="text-white/60 text-sm font-light">
-                Bientôt disponibles
-              </p>
+              <h4 className="text-white font-medium text-lg">Contact</h4>
+              <div className="space-y-3 text-white/60 text-sm font-light">
+                <p>Boostez votre visibilité dès maintenant</p>
+                <a href="#contact" className="inline-block px-6 py-3 bg-gradient-to-r from-green-400 to-emerald-500 text-black font-semibold rounded-xl hover:shadow-lg hover:shadow-green-400/20 transition-all">
+                  Lancer ma campagne
+                </a>
+              </div>
             </motion.div>
           </div>
 

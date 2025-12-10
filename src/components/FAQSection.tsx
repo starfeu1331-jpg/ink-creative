@@ -12,7 +12,7 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     question: "Quel budget prévoir pour une campagne d'influence marketing ?",
-    answer: "Entre 500€ et 15.000€. Autant vous dire que c'est vague car chaque projet est différent, chaque besoin est unique. Nous adaptons la stratégie à votre budget pour maximiser le ROI."
+    answer: "Entre 500€ et 15.000€. La fourchette est large car chaque projet est différent, chaque besoin est unique. Nous adaptons la stratégie à votre budget pour maximiser le ROI."
   },
   {
     question: "Combien de temps dure une campagne typique ?",
@@ -20,7 +20,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: "Quels secteurs accompagnez-vous ?",
-    answer: "Tous les secteurs sont communicables, c'est la grande force de l'influence. Nos partenaires de prédilection sont autour de la rénovation et du lifestyle au vu du nombre d'agents et agences dans nos répertoires, mais nous nous adaptons à tous les secteurs."
+    answer: "Tous les secteurs sont communicables, c'est la grande force de l'influence. Nos partenaires de prédilection sont dans la rénovation, la décoration et le lifestyle au vu du nombre d'agents et agences dans nos répertoires, mais nous nous adaptons à tous les secteurs."
   },
   {
     question: "Comment mesurez-vous le retour sur investissement ?",
