@@ -20,6 +20,8 @@ const contactSchema = z.object({
   phone: z.string().min(10, 'Numéro de téléphone invalide'),
   company: z.string().optional(),
   message: z.string().min(10, 'Le message doit contenir au moins 10 caractères'),
+  website: z.string().optional(), // Honeypot anti-bot
+  acceptCGU: z.boolean().refine((val) => val === true, 'Vous devez accepter les CGU'),
 });
 
 export async function POST(request: NextRequest) {
@@ -29,6 +31,10 @@ export async function POST(request: NextRequest) {
     // Validation des données
     const validatedData = contactSchema.parse(body);
     
+    // Détection de bot via honeypot
+    const isBot = validatedData.website && validatedData.website.trim().length > 0;
+    const source = isBot ? '🤖 Bot détecté' : 'website_form';
+    
     // Enregistrement dans la base de données
     const contact = await prisma.contact.create({
       data: {
@@ -37,7 +43,7 @@ export async function POST(request: NextRequest) {
         phone: validatedData.phone,
         company: validatedData.company || null,
         message: validatedData.message,
-        source: 'website_form',
+        source: source,
       },
     });
     

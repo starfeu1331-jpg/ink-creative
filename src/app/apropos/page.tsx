@@ -91,7 +91,7 @@ export default function AProposPage() {
                   {/* Photo qui dépasse */}
                   <div className="absolute bottom-0 left-0 right-0 h-[120%] rounded-3xl overflow-hidden">
                     <Image 
-                      src="/marceau.png" 
+                      src="/marceau.webp" 
                       alt="Marceau JUILLET" 
                       fill
                       className="object-cover object-center"
@@ -157,7 +157,7 @@ export default function AProposPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              Ce qui nous <span className="bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">différencie</span>
+              <span className="text-white/90">Ce qui nous</span> <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent font-normal">différencie</span>
             </motion.h2>
 
             <div className="grid md:grid-cols-3 gap-12">

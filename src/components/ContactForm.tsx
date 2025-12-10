@@ -10,6 +10,8 @@ interface FormData {
   phone: string;
   company: string;
   message: string;
+  website: string; // Honeypot anti-bot
+  acceptCGU: boolean;
 }
 
 interface ContactFormProps {
@@ -22,7 +24,9 @@ export default function ContactForm({ variant = 'default' }: ContactFormProps) {
     email: '',
     phone: '',
     company: '',
-    message: ''
+    message: '',
+    website: '', // Honeypot
+    acceptCGU: false
   });
   
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -67,7 +71,7 @@ export default function ContactForm({ variant = 'default' }: ContactFormProps) {
         }
         
         // Reset form
-        setFormData({ name: '', email: '', phone: '', company: '', message: '' });
+        setFormData({ name: '', email: '', phone: '', company: '', message: '', website: '', acceptCGU: false });
         
         setTimeout(() => setStatus('idle'), 5000);
       } else {
@@ -189,6 +193,45 @@ export default function ContactForm({ variant = 'default' }: ContactFormProps) {
               placeholder="Parlez-nous de vos objectifs, de votre cible et de votre budget approximatif..."
               disabled={status === 'loading' || status === 'success'}
             />
+          </div>
+
+          {/* Honeypot - Champ piège invisible pour les bots */}
+          <div className="absolute" style={{ height: 0, width: 0, overflow: 'hidden', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
+            <label htmlFor="website">Site web (ne pas remplir)</label>
+            <input
+              type="text"
+              id="website"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={formData.website}
+              onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+            />
+          </div>
+
+          {/* Checkbox CGU */}
+          <div className="mb-6">
+            <label className="flex items-start gap-3 cursor-pointer group">
+              <input
+                type="checkbox"
+                required
+                checked={formData.acceptCGU}
+                onChange={(e) => setFormData({ ...formData, acceptCGU: e.target.checked })}
+                disabled={status === 'loading' || status === 'success'}
+                className="mt-1 w-5 h-5 rounded border-white/20 bg-white/5 text-green-500 focus:ring-2 focus:ring-green-400/50 focus:ring-offset-0 transition-all"
+              />
+              <span className="text-white/70 text-sm group-hover:text-white/90 transition-colors">
+                J'accepte les{' '}
+                <a href="/mentions-legales" target="_blank" className="text-green-400 hover:text-green-300 underline">
+                  Conditions Générales d'Utilisation
+                </a>
+                {' '}et la{' '}
+                <a href="/mentions-legales" target="_blank" className="text-green-400 hover:text-green-300 underline">
+                  Politique de Confidentialité
+                </a>
+                {' '}*
+              </span>
+            </label>
           </div>
 
           {/* Error Message */}

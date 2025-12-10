@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const clients = [
-  { name: 'Décor Discount', logo: '/logos/decor-discount.svg' },
-  { name: 'Kerma Concept', logo: '/logos/kerma-concept.svg' },
-  { name: 'BedInShop', logo: '/logos/bedinshop.svg' },
+  { name: 'Décor Discount', logo: '/logos/decor-discount.svg', url: 'https://www.decor-discount.com' },
+  { name: 'Kerma Concept', logo: '/logos/kerma-concept.svg', url: 'https://www.kermaconcept.com' },
+  { name: 'BedInShop', logo: '/logos/bedinshop.svg', url: 'https://www.bedinshop.fr' },
 ];
 
 const containerVariants = {
@@ -60,17 +60,24 @@ export default function TrustSection() {
               variants={itemVariants}
               className="group relative"
             >
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 h-32 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105">
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <Image
-                    src={client.logo}
-                    alt={client.name}
-                    width={client.name === 'Kerma Concept' ? 120 : 200}
-                    height={80}
-                    className="object-contain opacity-70 group-hover:opacity-100 transition-opacity"
-                  />
+              <a
+                href={client.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 h-32 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105 cursor-pointer">
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <Image
+                      src={client.logo}
+                      alt={client.name}
+                      width={client.name === 'Kerma Concept' ? 120 : 200}
+                      height={80}
+                      className="object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                    />
+                  </div>
                 </div>
-              </div>
+              </a>
             </motion.div>
           ))}
         </motion.div>

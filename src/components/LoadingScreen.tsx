@@ -13,23 +13,23 @@ export default function LoadingScreen() {
     // Animation logo démarre IMMÉDIATEMENT
     setShowAnimation(true);
 
-    // Chargement un peu plus rapide
+    // Chargement plus rapide (divisé par 2)
     const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
-          // Attendre 1 seconde après la fin du chargement
-          setTimeout(() => setIsLoading(false), 1000);
+          // Attendre moins longtemps après la fin du chargement
+          setTimeout(() => setIsLoading(false), 500);
           return 100;
         }
-        // Chargement qui dure environ 4.5 secondes
-        return prev + Math.random() * 3 + 3; // Entre 3 et 6 par étape
+        // Chargement qui dure environ 2.2 secondes au lieu de 4.5
+        return prev + Math.random() * 10 + 6; // Entre 6 et 16 par étape (2x plus rapide)
       });
-    }, 50); // Toutes les 150ms
+    }, 150); // Toutes les 150ms
 
     return () => {
       clearInterval(timer);
-    }; 
+    };
   }, []);
 
   return (
