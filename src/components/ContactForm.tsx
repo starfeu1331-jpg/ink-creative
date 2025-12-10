@@ -197,15 +197,16 @@ export default function ContactForm({ variant = 'default' }: ContactFormProps) {
 
           {/* Honeypot - Champ piège invisible pour les bots */}
           <div className="absolute" style={{ height: 0, width: 0, overflow: 'hidden', opacity: 0, pointerEvents: 'none' }} aria-hidden="true">
-            <label htmlFor="website">Site web (ne pas remplir)</label>
+            <label htmlFor="website">URL de votre site</label>
             <input
-              type="text"
+              type="url"
               id="website"
               name="website"
               tabIndex={-1}
-              autoComplete="off"
+              autoComplete="new-password"
               value={formData.website}
               onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+              placeholder="https://votre-site.com"
             />
           </div>
 
