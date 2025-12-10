@@ -1,17 +1,9 @@
-import { Metadata } from 'next';
-import ConfidentialiteClient from './ConfidentialiteClient';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Politique de Confidentialité | Ink Creative',
-  description: 'Politique de confidentialité et protection des données personnelles d\'Ink Creative. Conformité RGPD, droits des utilisateurs et traitement des données.',
-  robots: 'noindex, follow',
-};
+import { motion } from 'framer-motion';
+import Link from 'next/link';
 
-export default function ConfidentialitePage() {
-  return <ConfidentialiteClient />;
-}
-
-export default function ConfidentialitePage() {
+export default function ConfidentialiteClient() {
   return (
     <div className="min-h-screen pt-32 pb-20 px-6">
       <div className="max-w-4xl mx-auto">
