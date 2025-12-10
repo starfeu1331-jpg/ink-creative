@@ -64,7 +64,7 @@ export default function ProcessSection() {
             Comment je travaille
           </h2>
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            Un processus structuré en 7 étapes pour s&apos;adapter à chaque PME
+            Un processus structuré en 4 étapes pour s&apos;adapter à chaque PME
           </p>
         </motion.div>
 
