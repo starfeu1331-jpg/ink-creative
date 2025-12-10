@@ -23,13 +23,13 @@ export default function LoadingScreen() {
           return 100;
         }
         // Chargement qui dure environ 4.5 secondes
-        return prev + Math.random() * 5 + 3; // Entre 3 et 8 par étape
+        return prev + Math.random() * 3 + 3; // Entre 3 et 6 par étape
       });
-    }, 150); // Toutes les 150ms
+    }, 50); // Toutes les 150ms
 
     return () => {
       clearInterval(timer);
-    };
+    }; 
   }, []);
 
   return (

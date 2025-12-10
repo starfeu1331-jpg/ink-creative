@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
           minute: '2-digit'
         });
 
-        const emailHtml = render(
+        const emailHtml = await render(
           ContactNotification({
             name: validatedData.name,
             email: validatedData.email,
@@ -61,7 +61,8 @@ export async function POST(request: NextRequest) {
             company: validatedData.company,
             message: validatedData.message,
             date: emailDate,
-          })
+          }),
+          { pretty: true }
         );
 
         await resend.emails.send({
