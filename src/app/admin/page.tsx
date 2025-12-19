@@ -15,8 +15,16 @@ interface Contact {
   createdAt: string;
 }
 
+interface ClickStats {
+  source: string;
+  _count: {
+    source: number;
+  };
+}
+
 export default function AdminPage() {
   const [contacts, setContacts] = useState<Contact[]>([]);
+  const [clickStats, setClickStats] = useState<ClickStats[]>([]);
   const [loading, setLoading] = useState(true);
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -24,6 +32,7 @@ export default function AdminPage() {
   useEffect(() => {
     if (isAuthenticated) {
       fetchContacts();
+      fetchClickStats();
     }
   }, [isAuthenticated]);
 
@@ -38,6 +47,18 @@ export default function AdminPage() {
       console.error('Erreur:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchClickStats = async () => {
+    try {
+      const response = await fetch('/api/track-click');
+      const data = await response.json();
+      if (data.clicks) {
+        setClickStats(data.clicks);
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
     }
   };
 
@@ -110,6 +131,38 @@ export default function AdminPage() {
             Déconnexion
           </button>
         </div>
+
+        {/* Compteur de clics depuis la signature email */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-2xl shadow-lg p-6 mb-8"
+        >
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <svg className="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Statistiques de clics
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {clickStats.map((stat) => (
+              <div key={stat.source} className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-200">
+                <p className="text-sm text-gray-600 mb-1">
+                  {stat.source === 'email-signature' ? '📧 Signature Email' : stat.source}
+                </p>
+                <p className="text-3xl font-bold text-blue-600">{stat._count.source}</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {stat._count.source === 1 ? 'clic' : 'clics'}
+                </p>
+              </div>
+            ))}
+            {clickStats.length === 0 && (
+              <div className="col-span-full text-center py-4 text-gray-500">
+                Aucun clic enregistré pour le moment
+              </div>
+            )}
+          </div>
+        </motion.div>
 
         {loading ? (
           <div className="text-center py-12">

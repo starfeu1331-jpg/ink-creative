@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signature Email - Marceau INK</title>
+  <style>
+    @keyframes liquidFill {
+      0% {
+        transform: translateY(100%);
+      }
+      50%, 100% {
+        transform: translateY(0%);
+      }
+    }
+
+    @keyframes bubble1 {
+      0%, 10% {
+        cy: 170;
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.4;
+      }
+      45% {
+        cy: 50;
+        opacity: 0;
+      }
+      50%, 100% {
+        cy: 50;
+        opacity: 0;
+      }
+    }
+
+    @keyframes bubble2 {
+      0%, 15% {
+        cy: 180;
+        opacity: 0;
+      }
+      25% {
+        opacity: 0.3;
+      }
+      48% {
+        cy: 60;
+        opacity: 0;
+      }
+      50%, 100% {
+        cy: 60;
+        opacity: 0;
+      }
+    }
+
+    @keyframes wave {
+      0%, 50% {
+        d: path('M 0,150 Q 50,145 100,150 T 200,150 L 200,200 L 0,200 Z');
+      }
+      15% {
+        d: path('M 0,150 Q 50,155 100,150 T 200,150 L 200,200 L 0,200 Z');
+      }
+      30% {
+        d: path('M 0,150 Q 50,145 100,150 T 200,150 L 200,200 L 0,200 Z');
+      }
+    }
+
+    @keyframes fadeIn {
+      0%, 46% {
+        opacity: 0;
+      }
+      50%, 10!-- Gradient liquide glass -->
+            <linearGradient id="liquidGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+              <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+              <stop offset="40%" style="stop-color:#1e293b;stop-opacity:0.95" />
+              <stop offset="100%" style="stop-color:#334155;stop-opacity:0.9" />
+            </linearGradient>
+
+            <!-- Effet verre brillant -->
+            <radialGradient id="glassShine">
+              <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3" />
+              <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+            </radialGradient>
+          </defs>
+          
+          <!-- Fond blanc -->
+          <rect width="200" height="150" fill="white"/>
+          
+          <!-- Animation liquide -->
+          <g mask="url(#logoMask)">
+            <!-- Base liquide -->
+            <g class="liquid-base" style="transform-origin: center bottom; transform: translateY(100%);">
+              <rect x="0" y="0" width="200" height="150" fill="url(#liquidGradient)"/>
+              
+              <!-- Vague supérieure -->
+              <path class="liquid-wave" 
+                    d="M 0,150 Q 50,145 100,150 T 200,150 L 200,200 L 0,200 Z" 
+                    fill="#1e293b" 
+                    opacity="0.5"/>
+              
+              <!-- Effet brillant -->
+              <ellipse cx="100" cy="120" rx="60" ry="30" fill="url(#glassShine)"/>
+              
+              <!-- Bulles -->
+              <circle class="bubble-1" cx="70" cy="170" r="8" fill="#475569" opacity="0">
+                <animate attributeName="cy" dur="2.5s" repeatCount="indefinite" 
+                         values="170;50;50" keyTimes="0;0.45;1"/>
+                <animate attributeName="opacity" dur="2.5s" repeatCount="indefinite"
+                         values="0;0.4;0;0" keyTimes="0;0.2;0.45;1"/>
+              </circle>
+              
+              <circle class="bubble-2" cx="130" cy="180" r="6" fill="#475569" opacity="0">
+                <animate attributeName="cy" dur="2.5s" repeatCount="indefinite"
+                         values="180;60;60" keyTimes="0;0.48;1"/>
+                <animate attributeName="opacity" dur="2.5s" repeatCount="indefinite"
+                         values="0;0.3;0;0" keyTimes="0;0.25;0.48;1"/>
+              </circle>
+            </g>
+          </g>
+          
+          <!-- Logo final (fade in à la fin) -->
+          <g class="final-logo" style="opacity: 0;ease-in-out infinite;
+    }
+
+    .bubble-2 {
+      animation: bubble2 2.5s ease-in-out infinite;
+    }
+
+    .final-logo {
+      animation: fadeIn 2.5s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  
+  <table cellpadding="0" cellspacing="0" border="0" style="background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%); border-radius: 16px; padding: 24px; max-width: 500px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+    <tr>
+      <td style="padding-bottom: 20px;">
+        <!-- SVG Logo animé -->
+        <svg width="200" height="150" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+          <defs>
+            <mask id="logoMask">
+              <rect width="200" height="150" fill="black"/>
+              
+              <!-- I -->
+              <rect x="30" y="45" width="8" height="60" fill="white"/>
+              
+              <!-- N -->
+              <rect x="50" y="45" width="8" height="60" fill="white"/>
+              <polygon points="58,45 58,85 78,45 86,45 86,105 78,105 78,65 58,105 50,105 50,45" fill="white"/>
+              <rect x="78" y="45" width="8" height="60" fill="white"/>
+              
+              <!-- K -->
+              <rect x="98" y="45" width="8" height="60" fill="white"/>
+              <polygon points="106,75 120,60 120,45 128,45 128,57 116,72 128,90 128,105 120,105 120,93 106,75" fill="white"/>
+              <polygon points="116,72 128,57 128,45 136,45 136,60 122,75 136,93 136,105 128,105 128,90 116,72" fill="white"/>
+            </mask>
+
+            <clipPath id="liquidClip">
+              <rect x="0" y="0" width="200" height="150" class="liquid-mask"/>
+            </clipPath>
+          </defs>
+          
+          <!-- Fond blanc -->
+          <rect width="200" height="150" fill="white"/>
+          
+          <!-- Logo liquide (animation) -->
+          <g mask="url(#logoMask)">
+            <rect x="0" y="0" width="200" height="150" fill="#111827" clip-path="url(#liquidClip)"/>
+          </g>
+          
+          <!-- Logo final (fade in à la fin) -->
+          <g class="final-logo">
+            <rect x="30" y="45" width="8" height="60" fill="#111827"/>
+            <rect x="50" y="45" width="8" height="60" fill="#111827"/>
+            <polygon points="58,45 58,85 78,45 86,45 86,105 78,105 78,65 58,105 50,105 50,45" fill="#111827"/>
+            <rect x="78" y="45" width="8" height="60" fill="#111827"/>
+            <rect x="98" y="45" width="8" height="60" fill="#111827"/>
+            <polygon points="106,75 120,60 120,45 128,45 128,57 116,72 128,90 128,105 120,105 120,93 106,75" fill="#111827"/>
+            <polygon points="116,72 128,57 128,45 136,45 136,60 122,75 136,93 136,105 128,105 128,90 116,72" fill="#111827"/>
+          </g>
+        </svg>
+      </td>
+    </tr>
+    <tr>
+      <td style="border-top: 1px solid rgba(0,0,0,0.06); padding-top: 20px;">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="padding-bottom: 8px;">
+              <p style="margin: 0; font-size: 18px; font-weight: 600; color: #111827; letter-spacing: -0.02em;">
+                Marceau
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-bottom: 16px;">
+              <p style="margin: 0; font-size: 14px; color: #6b7280; font-weight: 500;">
+                Créateur de contenu & Designer
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-bottom: 4px;">
+              <p style="margin: 0; font-size: 13px; color: #374151;">
+                📧 contact@ink-creative.fr
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-bottom: 4px;">
+              <p style="margin: 0; font-size: 13px; color: #374151;">
+                📱 +33 6 XX XX XX XX
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-top: 12px;">
+              <a href="https://ink-creative.fr" style="display: inline-block; padding: 8px 16px; background: #10b981; color: white; text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 500; transition: background 0.2s;">
+                ink-creative.fr
+              </a>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

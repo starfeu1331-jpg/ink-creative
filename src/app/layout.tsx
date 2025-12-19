@@ -6,6 +6,7 @@ import SmoothScrolling from "@/components/SmoothScrolling";
 import CustomCursor from "@/components/CustomCursor";
 import LoadingScreen from "@/components/LoadingScreen";
 import Analytics from "@/components/Analytics";
+import ClickTracker from "@/components/ClickTracker";
 import Script from "next/script";
 
 export const metadata: Metadata = {
@@ -105,6 +106,7 @@ export default function RootLayout({
         />
         <LoadingScreen />
         <Analytics />
+        <ClickTracker />
         <SmoothScrolling />
         <CustomCursor />
         <div className="relative z-10">

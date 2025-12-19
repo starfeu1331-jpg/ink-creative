@@ -22,3 +22,11 @@ model Contact {
   
   @@map("contacts")
 }
+
+model Click {
+  id        String   @id @default(cuid())
+  source    String
+  createdAt DateTime @default(now())
+  
+  @@map("clicks")
+}
