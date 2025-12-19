@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
-import { exec } from 'child_process';
-import { promisify } from 'util';
+import { PrismaClient } from '@prisma/client';
 
-const execAsync = promisify(exec);
+const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
   try {
@@ -13,23 +12,27 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
     }
 
-    // Exécuter prisma db push
-    const { stdout, stderr } = await execAsync('npx prisma db push --accept-data-loss --skip-generate');
+    // Créer la table clicks directement via SQL
+    await prisma.$executeRawUnsafe(`
+      CREATE TABLE IF NOT EXISTS "clicks" (
+        "id" TEXT NOT NULL,
+        "source" TEXT NOT NULL,
+        "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        
+        CONSTRAINT "clicks_pkey" PRIMARY KEY ("id")
+      );
+    `);
     
     return NextResponse.json({ 
       success: true, 
-      message: 'Migration effectuée',
-      stdout,
-      stderr 
+      message: 'Table "clicks" créée avec succès !'
     }, { status: 200 });
   } catch (error: any) {
     console.error('Erreur lors de la migration:', error);
     return NextResponse.json(
       { 
         error: 'Erreur lors de la migration',
-        details: error.message,
-        stdout: error.stdout,
-        stderr: error.stderr
+        details: error.message
       },
       { status: 500 }
     );
