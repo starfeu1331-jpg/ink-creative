@@ -22,9 +22,16 @@ interface ClickStats {
   };
 }
 
+interface ClickHistory {
+  id: string;
+  source: string;
+  createdAt: string;
+}
+
 export default function AdminPage() {
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [clickStats, setClickStats] = useState<ClickStats[]>([]);
+  const [clickHistory, setClickHistory] = useState<ClickHistory[]>([]);
   const [loading, setLoading] = useState(true);
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -56,6 +63,7 @@ export default function AdminPage() {
       const data = await response.json();
       if (data.clicks) {
         setClickStats(data.clicks);
+        setClickHistory(data.history || []);
       }
     } catch (error) {
       console.error('Erreur:', error);
@@ -144,7 +152,9 @@ export default function AdminPage() {
             </svg>
             Statistiques de clics
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          {/* Stats agrégées */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             {clickStats.map((stat) => (
               <div key={stat.source} className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-4 border border-blue-200">
                 <p className="text-sm text-gray-600 mb-1">
@@ -162,6 +172,39 @@ export default function AdminPage() {
               </div>
             )}
           </div>
+
+          {/* Historique des clics */}
+          {clickHistory.length > 0 && (
+            <div className="border-t pt-4">
+              <h3 className="font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Historique des clics
+              </h3>
+              <div className="space-y-2 max-h-64 overflow-y-auto">
+                {clickHistory.map((click, index) => (
+                  <div key={click.id} className="flex items-center justify-between bg-gray-50 rounded-lg p-3 text-sm">
+                    <div className="flex items-center gap-3">
+                      <span className="text-gray-400 font-mono">#{clickHistory.length - index}</span>
+                      <span className="text-gray-700">
+                        {click.source === 'email-signature' ? '📧 Signature Email' : click.source}
+                      </span>
+                    </div>
+                    <span className="text-gray-500">
+                      {new Date(click.createdAt).toLocaleDateString('fr-FR', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </motion.div>
 
         {loading ? (

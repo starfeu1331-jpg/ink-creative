@@ -27,14 +27,25 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
-    const clicks = await prisma.click.groupBy({
+    // Récupérer les stats agrégées
+    const clickStats = await prisma.click.groupBy({
       by: ['source'],
       _count: {
         source: true,
       },
     });
 
-    return NextResponse.json({ clicks }, { status: 200 });
+    // Récupérer tous les clics avec leurs dates
+    const allClicks = await prisma.click.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return NextResponse.json({ 
+      clicks: clickStats,
+      history: allClicks
+    }, { status: 200 });
   } catch (error) {
     console.error('Erreur lors de la récupération des clics:', error);
     return NextResponse.json(
