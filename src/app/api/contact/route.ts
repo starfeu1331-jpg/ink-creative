@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
 
         const emailResult = await resend.emails.send({
           from: 'Ink Creative <onboarding@resend.dev>',
-          to: process.env.NOTIFICATION_EMAIL || 'starfeu1331@gmail.com',
+          to: process.env.NOTIFICATION_EMAIL || 'bonjour@ink-creative.fr',
           subject: '🎯 Nouvelle demande de contact - Ink Creative',
           html: emailHtml,
           reply_to: validatedData.email, // Permet de répondre directement au prospect
