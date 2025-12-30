@@ -45,20 +45,20 @@ export default function ContactNotification({
 
           {/* Badge "Nouveau" */}
           <Section style={badgeSection}>
-            <div style={badge}>🎯 Nouveau lead</div>
+            <div style={badge}> 📲 Nouveau lead !</div>
           </Section>
 
           {/* Informations du contact */}
           <Section style={infoCard}>
             <div style={infoRow}>
-              <span style={infoLabel}>👤 Nom</span>
+              <span style={infoLabel}>👤 Nom </span>
               <Text style={infoValue}>{name}</Text>
             </div>
 
             <Hr style={divider} />
 
             <div style={infoRow}>
-              <span style={infoLabel}>📧 Email</span>
+              <span style={infoLabel}>📧 Email </span>
               <Link href={`mailto:${email}`} style={infoLink}>
                 {email}
               </Link>
@@ -67,7 +67,7 @@ export default function ContactNotification({
             <Hr style={divider} />
 
             <div style={infoRow}>
-              <span style={infoLabel}>📞 Téléphone</span>
+              <span style={infoLabel}>📞 Téléphone </span>
               <Link href={`tel:${phone}`} style={infoLink}>
                 {phone}
               </Link>
@@ -77,7 +77,7 @@ export default function ContactNotification({
               <>
                 <Hr style={divider} />
                 <div style={infoRow}>
-                  <span style={infoLabel}>🏢 Entreprise</span>
+                  <span style={infoLabel}>🏢 Entreprise </span>
                   <Text style={infoValue}>{company}</Text>
                 </div>
               </>
@@ -86,7 +86,7 @@ export default function ContactNotification({
 
           {/* Message */}
           <Section style={messageSection}>
-            <Text style={messageLabel}>💬 Message</Text>
+            <Text style={messageLabel}>💬 Message </Text>
             <div style={messageBox}>
               <Text style={messageText}>{message}</Text>
             </div>
@@ -94,7 +94,7 @@ export default function ContactNotification({
 
           {/* Métadonnées */}
           <Section style={metaSection}>
-            <Text style={metaText}>📊 Source : Site web Ink Creative</Text>
+            <Text style={metaText}>📊 Source : Site web Ink Creative </Text>
             <Text style={metaText}>📅 Reçu le : {date}</Text>
           </Section>
 
